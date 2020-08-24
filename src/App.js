@@ -7,6 +7,7 @@ import Logo from './Components/Logo/Logo.js'
 import ImageLinkForm from  './Components/ImageLinkForm/ImageLinkForm.js'
 import FaceDetect from './Components/FaceDetect/FaceDetect.js'
 import Rank from './Components/Rank/Rank'
+import Signin from './Components/Signin/Signin.js'
 const app = new Clarifai.App({
  apiKey: 'c6112d09dcad498cb7dfe82518dee266'
 });
@@ -72,6 +73,7 @@ class App extends Component {
               params={particlesOption}
         />
       <Navigation/>
+      <Signin/>
       
       <Logo/>
       <Rank/>
