@@ -8,6 +8,7 @@ import ImageLinkForm from  './Components/ImageLinkForm/ImageLinkForm.js'
 import FaceDetect from './Components/FaceDetect/FaceDetect.js'
 import Rank from './Components/Rank/Rank'
 import Signin from './Components/Signin/Signin.js'
+import Register from './Components/Register/Register.js'
 const app = new Clarifai.App({
  apiKey: 'c6112d09dcad498cb7dfe82518dee266'
 });
@@ -31,6 +32,7 @@ class App extends Component {
       input:'',
       imageUrl:'',
       box:{},
+      route:'signin'
     }
   }
   calculateFaceLocation=(data)=>{
@@ -65,22 +67,32 @@ class App extends Component {
   
   
   }
+  onRouteChange=(route)=>{
+    this.setState({route:route});
+  }
    render() {
+  
   
   return (
     <div className="App">
         <Particles className='particles'
               params={particlesOption}
         />
-      <Navigation/>
-      <Signin/>
+      <Navigation onRouteChange={this.onRouteChange}/>
+      {this.state.route==='signin'
+       ? <Signin onRouteChange={this.onRouteChange}/>
       
+     : <div>
       <Logo/>
-      <Rank/>
-      <ImageLinkForm onInputChange={this.onInputChange}
-       onButtonSubmit={this.onButtonSubmit}/>
+       <Rank/>
+       <ImageLinkForm onInputChange={this.onInputChange}
+           onButtonSubmit={this.onButtonSubmit}/>
       
+    
+     
       <FaceDetect box={this.state.box} imageUrl={this.state.imageUrl}/>
+      </div>
+    }
     </div>
   );
 }
