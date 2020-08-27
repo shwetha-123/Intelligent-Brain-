@@ -79,10 +79,8 @@ class App extends Component {
               params={particlesOption}
         />
       <Navigation onRouteChange={this.onRouteChange}/>
-      {this.state.route==='signin'
-       ? <Signin onRouteChange={this.onRouteChange}/>
-      
-     : <div>
+      {this.state.route==='home'
+       ?<div>
       <Logo/>
        <Rank/>
        <ImageLinkForm onInputChange={this.onInputChange}
@@ -91,7 +89,16 @@ class App extends Component {
     
      
       <FaceDetect box={this.state.box} imageUrl={this.state.imageUrl}/>
-      </div>
+      </div> 
+       :(
+        this.state.route==='signin'?
+         <Signin onRouteChange={this.onRouteChange}/>
+         :<Register onRouteChange={this.onRouteChange}/>
+       )
+     
+      
+     
+
     }
     </div>
   );
